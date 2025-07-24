@@ -18,12 +18,33 @@
 // 1.  **Global and Function Scope with `var`**:
 
 //     *   Declare a global variable using `var` and log it.
+var globalVar = "I'm global!";
+console.log('globalVar at start:', globalVar);
+
 //     *   Inside a function, declare another `var` variable with the same name but different value and log it within the function.
+const myFunc = () => {
+  var globalVar = "I'm a liar!";
+  console.log('globalVar in myFunc:', globalVar);
+};
 //     *   Call your function.
+myFunc();
+
 //     *   Log your global variable. Did it change? No! This is function scope!
+console.log('globalVar outside myFunc:', globalVar);
 // 2.  **Block Scope with `let` and `const`**:
 
 //     *   Inside a block (use an `if` statement with a condition of `true`), declare variables using `let` and `const`. Try redeclaring them within the same block to observe errors.
+if (true) {
+  var globalVar = 'I have function scope';
+  let localLet = 'I am local';
+  const localConst = 'I am a local too';
+  console.log('local variables:', localLet, localConst);
+  console.log('globalVar in if:', globalVar);
+}
+let localLet = "I'm new now!";
+console.log('localLet outside if:', localLet);
+console.log('globalVar after if:', globalVar);
+
 //     *   Try to log them inside and outside the `if` statement. What happens?
 // 3.  **Redeclaration with `var`**:
 
