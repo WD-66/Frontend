@@ -4,19 +4,23 @@ multi-line comment */
 
 // 20 + 5;
 // VARIABLES ////////////////
-// let
+// re-assignable variables with let
 let result = 20 + 5;
 // console.log('result:', result);
 // result = 'This is a string';
 // console.log('result:', result);
 
+// constant variables with const
 const constant = "Don't reassign me!";
 
+// older syntax using var - don't use
 // var dontUseMe = "Please don't use me!";
 
 // ARITHMETIC ///////////////
+
 // result = result + 10;
 result += 10;
+
 result++;
 result--;
 // console.log('result:', result);
@@ -32,12 +36,30 @@ const remainder = 15 % 4;
 // console.log('isEven: ', isEven);
 
 // COMPARISONS ///////////////////
+//simple comparison
+//Don't use this one - usually
+// console.log(10 == '10');
+// console.log(0 == false);
+// console.log(10 != '10');
+
+//strict comparison - use this one
+// console.log(10 === '10');
+// console.log(10 !== '10');
 // console.log(17 !== '17');
 // console.log(true !== true);
+
 //logical AND
 // console.log(17 === 17 && 18 === 19);
+
 // logical OR
 // console.log(17 === 17 || 18 === 19);
+
+//logical not
+// console.log(!0);
+// console.log(!true);
+
+//CONDITIONALS //////////////////////////////////////////////////////
+// IF/ELSE, IF/ELSE IF
 let weatherToday;
 let temp = 4;
 
@@ -60,7 +82,6 @@ if (temp >= 20) {
 //template literal
 // console.log(`The weather today is ${weatherToday}.`);
 
-//ternary operator
 let isPlayTime = true;
 
 // if (isPlayTime) {
@@ -69,6 +90,7 @@ let isPlayTime = true;
 //   console.log('Oh no, I have to work :(');
 // }
 
+//ternary operator
 // isPlayTime ? console.log('Yay! Time to play!') : console.log('Oh no, I have to work :(');
 
 //switch statement
@@ -92,7 +114,7 @@ let characterClass = 'paladin';
 //     console.log('I love DnD!');
 // }
 
-// FUNCTIONS /////
+// FUNCTIONS /////////
 // declaration
 function sayHelloWorld() {
   console.log('Hello, world!');
