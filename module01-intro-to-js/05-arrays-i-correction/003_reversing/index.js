@@ -9,7 +9,8 @@
 
 // 1.  **Reverse the First Array in Place:**
 
-//     *   The `reverse` method reverses the array in place, which means the original array is modified.
+//     *   The `reverse` method reverses the array in place,
+// which means the original array is modified.
 //     *   For example, `array1.reverse()` will change `array1` from `[1, 2, 3, 4, 5]` to `[5, 4, 3, 2, 1]`.
 // 2.  **Create a Reversed Copy of the Second Array:**
 
@@ -22,6 +23,11 @@
 // Array 1: Use reverse() method
 const array1 = [1, 2, 3, 4, 5];
 // Reverse array1 in place and print the result
+array1.reverse();
+console.log('array1 after reverse:', array1);
 
 // Array 2: Use toReversed() method
 const array2 = ['a', 'b', 'c', 'd', 'e'];
+const reverseArray2 = array2.toReversed();
+console.log('array2 after toReversed:', array2);
+console.log('reverse array2', reverseArray2);

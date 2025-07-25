@@ -14,11 +14,21 @@ const array = ['apple', 'banana', 'cherry', 'date'];
 
 // Create different strings by joining the array elements with various delimiters
 // Default delimiter (comma)
+const comma = array.join();
+console.log('comma: ', comma);
 
 // Using dash as delimiter
+const dash = array.join('-');
+console.log('dash:', dash);
 
 // Using space as delimiter;
+const space = array.join(' ');
+console.log('space: ', space);
 
 // Using ' and ' as delimiter
+const and = array.join(' and ');
+console.log('and', and);
 
 // Without any delimiter
+const none = array.join('');
+console.log('none:', none);
