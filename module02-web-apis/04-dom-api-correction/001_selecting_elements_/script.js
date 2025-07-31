@@ -9,6 +9,7 @@ console.log('headerH1:', headerH1);
 // and log them to the console.
 const navLinks = document.querySelectorAll('.nav-list a');
 console.log('navLinks:', navLinks);
+
 //     *   Select the `.btn` element and log it to the console.
 const btn = document.querySelector('.btn');
 console.log('btn:', btn);

@@ -1,3 +1,4 @@
+// Array of 10 random tasks as strings
 const tasks = [
   'Complete the project',
   'Attend the meeting',
@@ -32,13 +33,6 @@ addBtn.addEventListener('click', () => {
   li.scrollIntoView();
 });
 
-// alertBtn.onclick = () => {
-//   console.log('This message has been logged.');
-// };
-
-// alertBtn.onclick = () => {
-//   alert('Do you feel alerted?');
-// };
 //     *   Attach an event to the second button to
 // display an alert with a custom message.
 alertBtn.addEventListener('click', () => {
@@ -52,5 +46,11 @@ logBtn.addEventListener('click', () => {
 
 // What would happen if instead of `element.addEventListener('click', listener)`
 //  you would  do `element.onclick = listener`? What are the differences?
+// using onclick will override the property, addEventListener allows you to add multiple event listeners
+// alertBtn.onclick = () => {
+//   console.log('This message has been logged.');
+// };
 
-// Array of 10 random tasks as strings
+// alertBtn.onclick = () => {
+//   alert('Do you feel alerted?');
+// };

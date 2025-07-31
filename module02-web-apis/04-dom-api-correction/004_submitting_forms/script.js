@@ -1,11 +1,3 @@
-// Submitting forms
-// ================
-
-// ### Objective
-
-// In this exercise, you will create a simple contact form and use JavaScript to handle the form submission, validate the fields, and display the submitted data.
-
-// ### Instructions:
 const contactForm = document.querySelector('#contact-form');
 const nameInput = document.querySelector('#name');
 const messageTextArea = document.querySelector('#message');
@@ -52,7 +44,3 @@ contactForm.addEventListener('submit', event => {
     output.classList.add('bg-red-500');
   }
 });
-
-//  In a real-life scenario, we would use the yet another
-// Web API to send the data from the form over the network to
-// store the data, sign up an user, create an order, process a payment and a very long et cetera, that other Web API is called **Fetch API**. We will talk about it very soon!
