@@ -1,4 +1,3 @@
-const header = document.querySelector('header');
 const pond = document.querySelector('#pond');
 const summonBtn = document.querySelector('#summon-btn');
 const addForm = document.querySelector('#add-form');
@@ -53,11 +52,54 @@ const renderSingleDuck = (duckObj, container) => {
   container.appendChild(card);
 };
 
-summonBtn.addEventListener('click', () => {
-  // renderDucks(ducksInThePond, pond);
+const errorHandler = (error, container) => {
+  console.error(error);
+  const h2 = document.createElement('h2');
+  h2.className = 'inline-block m-auto text-6xl mb-6 text-red-600';
+  h2.textContent = error.message;
+  container.appendChild(h2);
+};
+
+const getAllDucks = async () => {
+  const res = await fetch('https://duckpond-89zn.onrender.com/wild-ducks');
+
+  if (!res.ok) throw new Error(`Something went wrong! Error ${res.status}`);
+  const data = await res.json();
+  return data;
+};
+
+const createDuck = async newDuck => {
+  const res = await fetch('https://duckpond-89zn.onrender.com/wild-ducks', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(newDuck)
+  });
+
+  if (!res.ok) throw new Error(`Something went wrong! Error ${res.status}`);
+  const data = await res.json();
+  return data;
+};
+
+// summonBtn.addEventListener('click', () => {
+//   fetch('https://duckpond-89zn.onrender.com/wild-ducks')
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Something went wrong! Error ${res.status}`);
+//       return res.json();
+//     })
+//     .then(data => renderDucks(data, pond))
+//     .catch(err => errorHandler(err, pond));
+// });
+
+summonBtn.addEventListener('click', async () => {
+  try {
+    const allDucks = await getAllDucks();
+    renderDucks(allDucks, pond);
+  } catch (error) {
+    errorHandler(error, pond);
+  }
 });
 
-addForm.addEventListener('submit', e => {
+addForm.addEventListener('submit', async e => {
   e.preventDefault();
 
   const name = addForm.querySelector('#name');
@@ -76,11 +118,14 @@ addForm.addEventListener('submit', e => {
     }
 
     const newDuck = {
-      _id: crypto.randomUUID(),
       name: name.value,
       imgUrl: imgUrl.value,
       quote: quote.value
     };
+
+    const duckData = await createDuck(newDuck);
+    console.log(duckData);
+
     renderSingleDuck(newDuck, pond);
     e.target.reset();
   } catch (error) {
