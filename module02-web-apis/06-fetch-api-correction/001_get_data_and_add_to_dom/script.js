@@ -25,13 +25,20 @@ const fetchTodos = async () => {
 
 const fetchAndRenderTodos = async () => {
   try {
-    const todos = await fetchTodos();
-    console.log(todos);
-    if (Array.isArray(todos)) {
-      todos.forEach(todo => {
-        renderTodo(todo, todoList);
-      });
-    }
+    // const todos = await fetchTodos();
+    let todos = {};
+    // console.log(todos);
+    // checking is todos is an array before calling forEach
+    // if (Array.isArray(todos)) {
+    //   todos.forEach?.(todo => {
+    //     renderTodo(todo, todoList);
+    //   });
+    // }
+
+    // using optional chaining to check if forEach method exists before calling it
+    todos.forEach?.(todo => {
+      renderTodo(todo, todoList);
+    });
   } catch (error) {
     console.error(error);
   }
