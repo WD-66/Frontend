@@ -1,4 +1,7 @@
 const DuckForm = () => {
+	const handleChange = e => {
+		console.log(e.target.value);
+	};
 	return (
 		<section className='justify-self-end flex flex-col items-center gap-4 border-2 rounded-lg p-4 mx-8'>
 			<h2 className='text-4xl'>Add a new duck to the pond!</h2>
@@ -6,6 +9,7 @@ const DuckForm = () => {
 				<label className='w-full flex gap-2 items-baseline'>
 					<span className='text-xl'>Name:</span>
 					<input
+						onChange={handleChange}
 						id='name'
 						type='text'
 						placeholder="What is your duck's name?"
@@ -15,6 +19,7 @@ const DuckForm = () => {
 				<label className='w-full flex gap-2 items-baseline'>
 					<span className='text-xl'>Image:</span>
 					<input
+						onChange={e => console.log(e.target.value)}
 						id='img-url'
 						type='text'
 						placeholder='What does your duck look like?'
@@ -24,6 +29,7 @@ const DuckForm = () => {
 				<label className='w-full flex gap-2 items-baseline'>
 					<span className='text-xl'>Quote:</span>
 					<input
+						onChange={handleChange}
 						id='quote'
 						type='text'
 						placeholder='What does your duck say?'
