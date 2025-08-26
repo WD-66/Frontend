@@ -8,8 +8,9 @@ const MainLayout = () => {
 	);
 	return (
 		<div className='bg-slate-600 text-gray-300 flex flex-col min-h-screen'>
+			{/* because the Navbar is outside of Outlet, we pass via props */}
 			<Navbar cart={cart} />
-			<main className='flex-grow flex flex-col'>
+			<main className='flex-grow flex flex-col  py-4'>
 				<Outlet context={{ cart, setCart }} />
 			</main>
 			<Footer />

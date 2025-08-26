@@ -1,9 +1,16 @@
+// calculate the total cost of the cost
+const calcCartCost = cart =>
+	cart.reduce((acc, item) => acc + item.price * item.count, 0);
+
+//calculate the total number of items in the cart
+const calcCartCount = cart => cart.reduce((acc, item) => acc + item.count, 0);
+
 const formatPrice = price =>
 	new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(
 		price
 	);
 const checkInCart = (cart, product) =>
-	cart.find(item => item.id === product.id);
+	cart?.find(item => item.id === product.id);
 
 const addToCart = (cart, product) => {
 	const isInCart = checkInCart(cart, product);
@@ -45,4 +52,11 @@ const removeFromCart = (cart, product) => {
 	return updatedCart;
 };
 
-export { formatPrice, addToCart, checkInCart, removeFromCart };
+export {
+	formatPrice,
+	addToCart,
+	checkInCart,
+	removeFromCart,
+	calcCartCost,
+	calcCartCount
+};
