@@ -1,12 +1,34 @@
-# React + Vite
+# WBS CODING SCHOOL React Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## React <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React Logo" width="30" height="30" /> + TailwindCSS <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind Logo" width="30" height="30" /> + DaisyUI <img src="https://raw.githubusercontent.com/saadeghi/daisyui-images/master/images/daisyui-logo/favicon-192.png" alt="DaisyUI Logo"  width="30" height="30" /> built with Vite <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg" alt="Vite Logo" width="30" height="30" />
 
-Currently, two official plugins are available:
+![image](https://github.com/user-attachments/assets/e364c75d-d6b2-4cbd-aa7a-870f7674e528)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+This is a template with **React 19**, **TailwindCSS 4**, and **DaisyUI 5**, provided by **[WBS CODING SCHOOL](https://www.wbscodingschool.com/)**.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Clone into directory
+
+```sh
+git clone git@github.com:WebDev-WBSCodingSchool/wbs-react-template.git <directory>
+```
+
+## Install
+
+```sh
+cd <directory> && npm i
+```
+
+## Code
+
+```sh
+npm run dev
+```
+
+```sh
+VITE v6.2.0 ready in 508 ms
+ ➜ Local: http://localhost:5173/
+ ➜ Network: use --host to expose
+ ➜ press h + enter to show help
+ /*! 🌼 daisyUI 5 */
+```
