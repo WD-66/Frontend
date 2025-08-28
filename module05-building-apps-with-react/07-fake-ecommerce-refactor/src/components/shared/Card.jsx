@@ -1,9 +1,8 @@
-import { Link, useOutletContext } from 'react-router';
+import { Link } from 'react-router';
 import { formatPrice } from '../../utils';
 import CartBtns from './CartBtns';
 
 const Card = ({ product }) => {
-	const { cart, setCart } = useOutletContext();
 	const { title, price, category, image } = product;
 	const formattedPrice = formatPrice(price);
 
@@ -18,7 +17,7 @@ const Card = ({ product }) => {
 				<div className='card-actions justify-end'>
 					<Link
 						className='underline hover:text-purple-500'
-						to={`categories/${category}`}
+						to={`/categories/${category}`}
 					>
 						see more in {category}
 					</Link>

@@ -26,7 +26,7 @@ const CatList = () => {
 	return (
 		<div className='flex flex-wrap gap-4'>
 			{cats.map(cat => (
-				<Link to={`categories/${cat}`} key={cat}>
+				<Link to={`/categories/${cat}`} key={cat}>
 					<button className='btn btn-primary'>{cat}</button>
 				</Link>
 			))}
