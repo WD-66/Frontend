@@ -1,12 +1,13 @@
 import { useTodos } from '../context';
+
 const ToDoItem = ({ todo }) => {
-	const { toggleTodo } = useTodos();
+	const { todosDispatch } = useTodos();
+
+	const toggleTodo = id => {
+		todosDispatch({ type: 'TODO_TOGGLED', payload: id });
+	};
 	return (
-		<li
-			className={`flex items-center mb-2 ${
-				todo.completed ? 'line-through' : ''
-			}`}
-		>
+		<li className='flex items-center mb-2'>
 			<label>
 				<input
 					type='checkbox'
