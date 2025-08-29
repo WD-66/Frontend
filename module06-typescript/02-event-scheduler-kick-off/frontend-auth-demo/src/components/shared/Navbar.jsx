@@ -19,17 +19,20 @@ const Navbar = () => {
 							Home
 						</NavLink>
 					</li>
-					<li>
-						<NavLink className={showActive} to='/myPond'>
-							My Pond
-						</NavLink>
-					</li>
+
 					{signedIn ? (
-						<li>
-							<button className='btn btn-primary' onClick={handleSignOut}>
-								Sign Out
-							</button>
-						</li>
+						<>
+							<li>
+								<NavLink className={showActive} to='/myPond'>
+									My Pond
+								</NavLink>
+							</li>
+							<li>
+								<button className='btn btn-primary' onClick={handleSignOut}>
+									Sign Out
+								</button>
+							</li>
+						</>
 					) : (
 						<li>
 							<Link className='btn btn-primary' to='/signin'>

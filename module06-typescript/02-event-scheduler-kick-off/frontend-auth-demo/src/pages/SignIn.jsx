@@ -1,11 +1,12 @@
 import { useActionState, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, Navigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { validateSignIn } from '../utils';
 import { useAuth } from '../context';
+import { signIn } from '../data';
 
 const SignIn = () => {
-	const { handleSignIn } = useAuth();
+	const { handleSignIn, signedIn } = useAuth();
 	const signinAction = async (prevState, formData) => {
 		const email = formData.get('email');
 		const password = formData.get('password');
@@ -17,8 +18,12 @@ const SignIn = () => {
 		try {
 			toast.success('Welcome back');
 
-			console.log({ email, password });
-			handleSignIn();
+			// console.log({ email, password });
+
+			const signInRes = await signIn({ email, password });
+
+			console.log(signInRes);
+			handleSignIn(signInRes.token);
 
 			return { error: null, success: true };
 		} catch (error) {
@@ -37,6 +42,8 @@ const SignIn = () => {
 
 	const handleChange = e =>
 		setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+
+	if (signedIn) return <Navigate to='/mypond' />;
 
 	return (
 		<form
