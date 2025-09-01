@@ -1,7 +1,7 @@
 // TYPESCRIPT FUNCTION CARDIO
 //1
-function multiply(a, b) {
-  return a * b;
+function multiply(a: number, b: number): number {
+	return a * b;
 }
 
 multiply(2, 5); // 10
@@ -9,8 +9,8 @@ multiply(2, 5); // 10
 multiply('2', true);
 
 //2
-function greet(person) {
-  return `Hello ${person}`;
+function greet(person: string): string {
+	return `Hello ${person}`;
 }
 
 greet('Steve'); //Hello Steve
@@ -18,25 +18,29 @@ greet('Steve'); //Hello Steve
 greet({ id: 1, name: 'Steve' });
 
 //3
-const user = {
-  firstName: 'Karl',
-  lastName: 'Karlsen',
-  email: 'karl@example.com'
+
+type User = {
+	firstName: string;
+	lastName: string;
+	email?: string;
 };
 
-type User = any;
-
+const user: User = {
+	firstName: 'Karl',
+	lastName: 'Karlsen',
+	email: 'karl@example.com'
+};
 function getWelcomeMessage(user: User) {
-  return `Welcome, ${user.firstName} ${user.lastName}`;
+	return `Welcome, ${user.firstName} ${user.lastName}`;
 }
 
-getWelcomeMessage(user); // "Welcome, Karl Karlsen"
+console.log(getWelcomeMessage(user)); // "Welcome, Karl Karlsen"
 //@ts-expect-error
 getWelcomeMessage({ firstName: 'Alan' });
 
 //4
-function isEven(num: any): any {
-  return num % 2 == 0;
+function isEven(num: number): boolean {
+	return num % 2 === 0;
 }
 
 isEven(4); //true
@@ -46,8 +50,8 @@ isEven('4');
 const result: string = isEven(5);
 
 //5
-function getFirstElementofStringArray(arr) {
-  return arr[0];
+function getFirstElementofStringArray(arr: string[]): string {
+	return arr[0];
 }
 
 getFirstElementofStringArray(['a', 'b', 'c', 'd']); //"a"
@@ -55,8 +59,8 @@ getFirstElementofStringArray(['a', 'b', 'c', 'd']); //"a"
 getFirstElementofStringArray([1, 2, 3, 4]);
 
 //6
-function sumOfNumbers(number) {
-  return number.reduce((sum, current) => sum + current, 0);
+function sumOfNumbers(number: number[]) {
+	return number.reduce((sum, current) => sum + current, 0);
 }
 
 sumOfNumbers([1, 2, 3, 4]); // 10
@@ -64,8 +68,8 @@ sumOfNumbers([1, 2, 3, 4]); // 10
 sumOfNumbers(['1', '2', '3']);
 
 //7
-function getProductInfo(product: any) {
-  return `Product: ${product[0]}, Price: $${product[1]}`;
+function getProductInfo(product: [string, number]) {
+	return `Product: ${product[0]}, Price: $${product[1]}`;
 }
 
 getProductInfo(['Laptop', 1200]); // "Product: Laptop, Price: $1200"
@@ -75,8 +79,8 @@ getProductInfo([1200, 'Laptop']);
 getProductInfo(['Keyboard']);
 
 //8
-function formatUserInput(input: any) {
-  return `User said ${input}`;
+function formatUserInput(input: any): string {
+	return `User said ${input}`;
 }
 
 formatUserInput('hello'); // "User said hello"
@@ -85,29 +89,34 @@ formatUserInput(12434); // "User said 1243"
 let output: number = formatUserInput(400);
 
 // 9
-type UserID = any;
+type UserID = number;
 
 function fetchUserData(id: UserID) {
-  return { id, name: `User ${id}` };
+	return { id, name: `User ${id}` };
 }
 
 fetchUserData(123); // id: 123, name: "User 123"
 //@ts-expect-error
 fetchUserData('aa1123b');
 
+type Rectangle = {
+	base: number;
+	height: number;
+};
+
 // 10
-function getWidth(rectangle) {
-  return rectangle.base * rectangle.height;
+function getWidth(rectangle: Rectangle) {
+	return rectangle.base * rectangle.height;
 }
 getWidth({ base: 2, height: 1 });
 //@ts-expect-error
 getWidth({ base: 100, height: 50, pi: 220, e: 120 });
 
 //11
-type Response = any;
+type Response = [number, string];
 
 function handleResponse(response: Response) {
-  return `Status: ${response[0]}, Body: "${response[1]}"`;
+	return `Status: ${response[0]}, Body: "${response[1]}"`;
 }
 
 handleResponse([200, 'OK']);
@@ -118,8 +127,8 @@ handleResponse([500]);
 handleResponse('I am a teapot');
 
 //12
-function logValue(input: any) {
-  console.log(input);
+function logValue(input: string | number | boolean): void {
+	console.log(input);
 }
 
 logValue('hello');
@@ -133,8 +142,15 @@ logValue({ value: 'no' });
 type ApiData = string;
 
 async function fetchData(url: any) {
-  return `Data from ${url}`;
+	return `Data from ${url}`;
 }
 
 // How do we need to change this line to make this work?
-const data: ApiData = fetchData('/api/user');
+
+const getData = async () => {
+	const data: ApiData = await fetchData('/api/user');
+
+	console.log(data);
+};
+
+getData();
