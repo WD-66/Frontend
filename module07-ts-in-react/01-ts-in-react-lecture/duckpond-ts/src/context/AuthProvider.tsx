@@ -1,53 +1,54 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 import { AuthContext } from '.';
 import { me } from '../data';
+import type { AuthContextType, User } from '../types';
 
-const AuthProvider = ({ children }) => {
-	const [signedIn, setSignedIn] = useState(false);
-	const [user, setUser] = useState(null);
-	const [checkSession, setCheckSession] = useState(true);
+type AuthProviderProps = {
+  children: ReactNode;
+};
 
-	const handleSignIn = token => {
-		localStorage.setItem('token', token);
-		setSignedIn(true);
-		setCheckSession(true);
-	};
+const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [signedIn, setSignedIn] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [checkSession, setCheckSession] = useState(true);
 
-	const handleSignOut = () => {
-		localStorage.removeItem('token');
-		setSignedIn(false);
-		setUser(null);
-	};
+  const handleSignIn = (token: string) => {
+    localStorage.setItem('token', token);
+    setSignedIn(true);
+    setCheckSession(true);
+  };
 
-	useEffect(() => {
-		const getUser = async () => {
-			try {
-				const data = await me();
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    setSignedIn(false);
+    setUser(null);
+  };
 
-				setUser(data);
-				setSignedIn(true);
-			} catch (error) {
-				console.error(error);
-			} finally {
-				setCheckSession(false);
-			}
-		};
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const data = await me();
 
-		if (checkSession) getUser();
-	}, [checkSession]);
+        setUser(data);
+        setSignedIn(true);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setCheckSession(false);
+      }
+    };
 
-	return (
-		<AuthContext
-			value={{
-				signedIn,
-				user,
-				handleSignIn,
-				handleSignOut
-			}}
-		>
-			{children}
-		</AuthContext>
-	);
+    if (checkSession) getUser();
+  }, [checkSession]);
+
+  const values: AuthContextType = {
+    signedIn,
+    user,
+    handleSignIn,
+    handleSignOut,
+  };
+
+  return <AuthContext value={values}>{children}</AuthContext>;
 };
 
 export default AuthProvider;
