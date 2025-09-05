@@ -5,12 +5,20 @@ import { sleep, validateMyDuckForm } from '../../utils';
 import { createDuck } from '../../data';
 import type { DuckInput } from '../../types';
 
+type ActionResult = {
+  error: null | Partial<DuckInput>;
+  success: boolean;
+};
+
 const DuckForm = () => {
   const { setDucks } = useDucks();
-  const submitAction = async (prevState, formData) => {
-    const name = formData.get('name');
-    const imgUrl = formData.get('imgUrl');
-    const quote = formData.get('quote');
+  const submitAction = async (
+    _: unknown,
+    formData: FormData
+  ): Promise<ActionResult> => {
+    const name = formData.get('name') as string;
+    const imgUrl = formData.get('imgUrl') as string;
+    const quote = formData.get('quote') as string;
 
     const newDuckData = { name, imgUrl, quote };
     const validationErrors = validateMyDuckForm(newDuckData);
@@ -32,7 +40,9 @@ const DuckForm = () => {
       toast.success("There's a new duck in your pond!");
       return { error: null, success: true };
     } catch (error) {
-      toast.error(error.message || 'Something went wrong');
+      const errorMessage =
+        error instanceof Error ? error.message : 'Something went wrong!';
+      toast.error(errorMessage);
       return { error: null, success: false };
     }
   };

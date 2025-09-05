@@ -5,15 +5,5 @@ import DuckPond from './shared/DuckPond';
 import Footer from './shared/Footer';
 import Navbar from './shared/Navbar';
 import SubmitBtn from './shared/SubmitBtn';
-import ErrorFallback from './shared/ErrorFallback';
 
-export {
-	Header,
-	DuckCard,
-	DuckForm,
-	DuckPond,
-	Footer,
-	Navbar,
-	SubmitBtn,
-	ErrorFallback
-};
+export { Header, DuckCard, DuckForm, DuckPond, Footer, Navbar, SubmitBtn };

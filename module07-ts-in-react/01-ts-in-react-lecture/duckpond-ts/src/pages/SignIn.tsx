@@ -4,12 +4,21 @@ import { toast } from 'react-toastify';
 import { validateSignIn } from '../utils';
 import { useAuth } from '../context';
 import { signIn } from '../data';
+import type { SignInInput } from '../types';
+
+type ActionResult = {
+  error: null | Partial<SignInInput>;
+  success: boolean;
+};
 
 const SignIn = () => {
   const { handleSignIn, signedIn } = useAuth();
-  const signinAction = async (prevState, formData) => {
-    const email = formData.get('email');
-    const password = formData.get('password');
+  const signinAction = async (
+    _: unknown,
+    formData: FormData
+  ): Promise<ActionResult> => {
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
 
     const validationErrors = validateSignIn({ email, password });
     if (Object.keys(validationErrors).length !== 0) {
@@ -27,7 +36,9 @@ const SignIn = () => {
 
       return { error: null, success: true };
     } catch (error) {
-      toast.error(error.message || 'Something went wrong!');
+      const errorMessage =
+        error instanceof Error ? error.message : 'Something went wrong!';
+      toast.error(errorMessage);
       return { error: null, success: false };
     }
   };

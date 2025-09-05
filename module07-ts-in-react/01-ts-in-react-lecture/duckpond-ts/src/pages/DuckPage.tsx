@@ -18,10 +18,10 @@ const DuckPage = () => {
     const abortController = new AbortController();
     (async () => {
       try {
-        const duckData = await getDuckById(id, abortController);
+        const duckData = await getDuckById(id ?? '', abortController);
         setCurrDuck(duckData);
       } catch (error) {
-        if (error.name !== 'AbortError') {
+        if (error instanceof Error && error.name !== 'AbortError') {
           console.error(error);
         }
       }
